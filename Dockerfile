@@ -10,7 +10,7 @@ RUN apk --no-cache add git musl-dev krb5-dev openssl-dev openssl krb5 gcc make i
     addgroup -S elog && \
     adduser -S -u 100 -G elog elog && \
     cd / && \
-    rm -rf /usr/local/elog /elog /usr/share/man /usr/share/locale && \
+    rm -rf /usr/local/elog /elog && \
     apk del git gcc make apk-tools musl-dev krb5-dev openssl-dev && \
     mkdir -p /var/run/
 ENTRYPOINT ["elogd"]
