@@ -13,6 +13,6 @@ RUN apk --no-cache add git musl-dev krb5-dev openssl-dev openssl krb5 gcc make i
     rm -rf /usr/local/elog /elog && \
     apk del git gcc make apk-tools musl-dev krb5-dev openssl-dev && \
     mkdir -p /var/run/
-    echo ${host}>>"/etc/hosts"
+    echo abracadabra.com>>"/etc/hosts"
 ENTRYPOINT ["elogd"]
 CMD ["-p", "8080", "-c", "/home/elog/elogd.cfg", "-d","/home/elog/logbooks","-s","/home/elog/resources"]
