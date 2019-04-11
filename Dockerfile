@@ -2,11 +2,10 @@ FROM alpine
 
 # Make port 80 available to the world outside this container
 EXPOSE 8080
-RUN apk --no-cache add git musl-dev krb5-dev openssl-dev openssl krb5 linux-pam gcc make imagemagick ghostscript ghostscript-fonts && \
+RUN apk --no-cache add git musl-dev krb5-dev openssl-dev openssl krb5 gcc make imagemagick ghostscript ghostscript-fonts && \
     git clone https://bitbucket.org/ritt/elog --recursive && \
     cd /elog && \
-    git fetch && git checkout pam && \
-    make -j8 USE_SSL=1 USE_KRB5=1  USE_PAM=1 && \
+    make -j8 USE_SSL=1 USE_KRB5=1 && \
     make install && \
     addgroup -S elog && \
     adduser -S -u 100 -G elog elog && \
