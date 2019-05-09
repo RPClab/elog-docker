@@ -20,4 +20,4 @@ RUN apk --no-cache add git musl-dev krb5-dev openssl-dev tzdata mariadb-common m
     date && \
     apk del git gcc make apk-tools musl-dev krb5-dev openssl-dev alpine-conf  
 ENTRYPOINT ["elogd"]
-CMD ["-p", "8080", "-c", "/home/elog/elogd.cfg", "-d","/home/elog/logbooks","-s","/home/elog/resources"]
+CMD ["-p","8080","-c","-x","/home/elog/elogd.cfg","-d","/home/elog/logbooks","-s","/home/elog/resources"]
