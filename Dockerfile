@@ -15,7 +15,7 @@ RUN apk --no-cache add git musl-dev krb5-dev openssl-dev tzdata mariadb-common m
     rm -rf /usr/share/man/ && \
     rm -rf /usr/share/locale/ && \
     setup-timezone -z ${TZ} && \
-    cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
+    cp -r -f /usr/share/zoneinfo/${TZ} /etc/localtime && \
     echo "${TZ}" >  /etc/timezone && \
     date && \
     apk del git gcc make apk-tools musl-dev krb5-dev openssl-dev alpine-conf  
