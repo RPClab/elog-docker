@@ -1,6 +1,6 @@
 FROM alpine
-ENV TIMEZONE=Asia/Shanghai
-# Make port 80 available to the world outside this container
+ENV TZ Asia/Shanghai
+# Make port 8080 available to the world outside this container
 EXPOSE 8080
 RUN apk --no-cache add git musl-dev krb5-dev openssl-dev tzdata mariadb-common mariadb-client openssl alpine-conf krb5 gcc make imagemagick-libs imagemagick ghostscript ghostscript-gtk ghostscript-dev  ghostscript-fonts && \
     git clone https://bitbucket.org/ritt/elog --recursive && \
@@ -14,9 +14,9 @@ RUN apk --no-cache add git musl-dev krb5-dev openssl-dev tzdata mariadb-common m
     mkdir -p /var/run/ && \
     rm -rf /usr/share/man/ && \
     rm -rf /usr/share/locale/ && \
-    setup-timezone -z ${TIMEZONE} && \
-    cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
-    echo "${TIMEZONE}" >  /etc/timezone && \
+    setup-timezone -z ${TZ} && \
+    cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
+    echo "${TZ}" >  /etc/timezone && \
     date && \
     apk del git gcc make apk-tools musl-dev krb5-dev openssl-dev alpine-conf  
 ENTRYPOINT ["elogd"]
