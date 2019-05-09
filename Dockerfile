@@ -14,7 +14,7 @@ RUN apk --no-cache add git musl-dev krb5-dev openssl-dev openssl alpine-conf krb
     mkdir -p /var/run/ && \
     rm -rf /usr/share/man/ && \
     rm -rf /usr/share/locale/ && \
-    setup-timezone -z ${TIMEZONE}
-    apk del git gcc make apk-tools musl-dev krb5-dev openssl-dev alpine-conf  && \
+    setup-timezone -z ${TIMEZONE} && \
+    apk del git gcc make apk-tools musl-dev krb5-dev openssl-dev alpine-conf  
 ENTRYPOINT ["elogd"]
 CMD ["-p", "8080", "-c", "/home/elog/elogd.cfg", "-d","/home/elog/logbooks","-s","/home/elog/resources"]
