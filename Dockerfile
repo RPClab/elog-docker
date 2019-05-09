@@ -1,5 +1,5 @@
 FROM alpine
-
+ENV TIMEZONE=Asia/Shanghai
 # Make port 80 available to the world outside this container
 EXPOSE 8080
 RUN apk --no-cache add git musl-dev krb5-dev openssl-dev openssl krb5 gcc make imagemagick-libs imagemagick ghostscript ghostscript-gtk ghostscript-dev  ghostscript-fonts && \
@@ -14,6 +14,7 @@ RUN apk --no-cache add git musl-dev krb5-dev openssl-dev openssl krb5 gcc make i
     apk del git gcc make apk-tools musl-dev krb5-dev openssl-dev && \
     mkdir -p /var/run/ && \
     rm -rf /usr/share/man/ && \
-    rm -rf /usr/share/locale/
+    rm -rf /usr/share/locale/ \
+    setup-timezone -z ${TIMEZONE}
 ENTRYPOINT ["elogd"]
 CMD ["-p", "8080", "-c", "/home/elog/elogd.cfg", "-d","/home/elog/logbooks","-s","/home/elog/resources"]
