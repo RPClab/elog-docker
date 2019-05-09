@@ -2,7 +2,7 @@ FROM alpine
 ENV TZ Asia/Shanghai
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
-RUN apk --no-cache add git musl-dev krb5-dev openssl-dev tzdata mariadb-common mariadb-client openssl alpine-conf krb5 gcc make imagemagick-libs imagemagick ghostscript ghostscript-gtk ghostscript-dev  ghostscript-fonts && \
+RUN apk --no-cache add git musl-dev krb5-dev openssl-dev tzdata openssl alpine-conf krb5 gcc make imagemagick-libs imagemagick ghostscript ghostscript-gtk ghostscript-dev  ghostscript-fonts && \
     git clone https://bitbucket.org/ritt/elog --recursive && \
     cd /elog && \
     make -j8 USE_SSL=1 USE_KRB5=1 && \
